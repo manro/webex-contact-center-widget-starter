@@ -13,7 +13,7 @@ import styles from "./sandbox.scss";
 @customElement("wcc-widget-starter-lit")
 export class Sandbox extends LitElement {
   @internalProperty() darkTheme = false;
-  @internalProperty() containerWidth = "1040px";
+  @internalProperty() containerWidth = "80vw";
   @internalProperty() containerHeight = "80vh";
 
   static get styles() {
@@ -23,25 +23,39 @@ export class Sandbox extends LitElement {
   themeToggle() {
     return html`
       <div class="toggle-container">
-        <md-checkbox type="checkbox" id="theme-switch" class="theme-switch" data-aspect="darkTheme" label="Dark Mode"
-          @checkbox-change=${(e: MouseEvent)=> this.toggleSetting(e)}
+        <md-checkbox
+          type="checkbox"
+          id="theme-switch"
+          class="theme-switch"
+          data-aspect="darkTheme"
+          label="Dark Mode"
+          @checkbox-change=${(e: MouseEvent) => this.toggleSetting(e)}
           ?checked=${this.darkTheme}
-          >Dark Mode</md-checkbox>
+          >Dark Mode</md-checkbox
+        >
         <div class="switch-container">
           <md-label class="switch" text="Responsive">
             Widget Boundary
           </md-label>
-          <md-input type="text" id="width-switch" class="theme-switch" data-aspect="responsive-width" @click=${(e:
-            MouseEvent)=> this.toggleSetting(e)}
+          <md-input
+            type="text"
+            id="width-switch"
+            class="theme-switch"
+            data-aspect="responsive-width"
+            @click=${(e: MouseEvent) => this.toggleSetting(e)}
             @input-change=${(e: MouseEvent) => this.toggleSetting(e)}
             value=${this.containerWidth}
-            ></md-input>
+          ></md-input>
           <md-label>x</md-label>
-          <md-input type="text" id="height-switch" class="theme-switch" data-aspect="responsive-height" @click=${(e:
-            MouseEvent)=> this.toggleSetting(e)}
+          <md-input
+            type="text"
+            id="height-switch"
+            class="theme-switch"
+            data-aspect="responsive-height"
+            @click=${(e: MouseEvent) => this.toggleSetting(e)}
             @input-change=${(e: MouseEvent) => this.toggleSetting(e)}
             value=${this.containerHeight}
-            ></md-input>
+          ></md-input>
         </div>
       </div>
     `;
@@ -61,39 +75,19 @@ export class Sandbox extends LitElement {
   }
 
   render() {
-    /**
-     * Property googleApiKey
-     * Access your API key from Google Maps Platform
-     * https://cloud.google.com/maps-platform
-     */
-    const googleApiKey = "";
-
-    /**
-    * Property: covidApiKey
-    * Access API Key: Covid Act Now Website
-    * https://apidocs.covidactnow.org/access
-    */
-    const covidApiKey = "";
-
-    const latitude = 37.369350;
-    const longitude = -122.079552;
-
     return html`
-      <div class="toggle">
-        ${this.themeToggle()}
-      </div>
-      <md-theme lumos ?darkTheme=${this.darkTheme}>
-        <div class="container">
-          <div style=${`width: ${this.containerWidth}; height: ${this.containerHeight};`} class="widget-container">
-            <hospital-bed-capacity
-              google-api-key=${googleApiKey}
-              covid-api-key=${covidApiKey}
-              latitude=${latitude}
-              longitude=${longitude}>
-            </hospital-bed-capacity>
-          </div>
+    <div class="toggle">
+      ${this.themeToggle()}
+    </div>
+    <md-theme lumos ?darkTheme=${this.darkTheme}>
+      <div class="container">
+        <div style=${`width: ${this.containerWidth}; height: ${this.containerHeight};`} class="widget-container">
+          <crm-widget phone-number="+1 (800) 471-2389"></crm-widget>
         </div>
-      </md-theme>
+      </div>
+    </md-theme>
+    </div>
+    </md-theme>
     `;
   }
 }
